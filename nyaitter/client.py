@@ -64,8 +64,9 @@ class Client:
             loop.close()
 
     async def close(self):
-        await self.http.close()
-        if self.loop.is_running():
+        if self.http is not None:
+            await self.http.close()
+        if self.loop is not None and self.loop.is_running():
             self.loop.stop()
 
     async def fetch_user(self, user_id: int):

@@ -40,12 +40,12 @@ class Post:
         p: Dict[str, Any] = data.get("post", data)
 
         reply_to_post = (
-            Post.from_json(p["reply_to_post"])
+            Post.from_json(p["reply_to_post"], client)
             if isinstance(p.get("reply_to_post"), dict)
             else None
         )
         reposted_post = (
-            Post.from_json(p["reposted_post"])
+            Post.from_json(p["reposted_post"], client)
             if isinstance(p.get("reposted_post"), dict)
             else None
         )

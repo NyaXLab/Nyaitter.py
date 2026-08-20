@@ -6,7 +6,6 @@ import sys
 from typing import (
     ClassVar,
     Dict,
-    Iterable,
     Optional,
     Union
 )
@@ -91,8 +90,8 @@ class HTTPClient:
 
     def setup(self, loop, connector=None):
         self.loop = loop
-        self.connector = connector or aiohttp.TCPConnector(loop=loop)
-        self.__session = aiohttp.ClientSession(connector=self.connector, loop=loop)
+        self.connector = connector or aiohttp.TCPConnector()
+        self.__session = aiohttp.ClientSession(connector=self.connector)
 
     async def close(self) -> None:
         if not self.__session.closed:
